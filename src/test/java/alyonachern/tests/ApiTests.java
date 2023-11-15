@@ -6,7 +6,7 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.is;
 
-public class ApiTests {
+public class ApiTests extends BaseTest {
 
     @Test
     void checkSupportTextInListUsersTest() {
@@ -14,7 +14,7 @@ public class ApiTests {
                 .log().uri()
                 .log().method()
                 .when()
-                .get("https://reqres.in/api/users?page=2")
+                .get("users?page=2")
                 .then()
                 .log().status()
                 .log().body()
@@ -27,7 +27,7 @@ public class ApiTests {
                 .log().uri()
                 .log().method()
                 .when()
-                .get("https://reqres.in/api/users/23")
+                .get("/users/23")
                 .then()
                 .log().status()
                 .log().body()
@@ -42,7 +42,7 @@ public class ApiTests {
                 .body("{\"email\": \"eve.holt@reqres.in\",\n\"password\": \"pistol\"}")
                 .contentType(JSON)
                 .when()
-                .post("https://reqres.in/api/register")
+                .post("/register")
                 .then()
                 .log().status()
                 .log().body()
@@ -59,7 +59,7 @@ public class ApiTests {
                 .body("{\"name\": \"morpheus\",\n\"job\": \"zion resident\"}")
                 .contentType(JSON)
                 .when()
-                .put("https://reqres.in/api/users/2")
+                .put("/users/2")
                 .then()
                 .log().status()
                 .log().body()
@@ -72,7 +72,7 @@ public class ApiTests {
                 .log().uri()
                 .log().method()
                 .when()
-                .delete("https://reqres.in/api/users/2")
+                .delete("/users/2")
                 .then()
                 .log().status()
                 .log().body()
